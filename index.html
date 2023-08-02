@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub-finder</title>
+    <link rel="stylesheet" href="output.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@400;500;700&family=League+Spartan:wght@400;500;600;700&family=Merriweather+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+    .wrapper.active{
+        background-color:#141d2f;
+        color: white;
+
+    }
+    .darkModes.active{
+        display: none;
+    }
+    .lightModes.active{
+        display: flex;
+    }
+    .heading.active{
+        color: white;
+    }
+    .searchbox.active , .infoContainer.active{
+        background-color: #1e2a47;
+        color: white;
+    }
+    .searchbox input.active::placeholder , .dob.active{
+        color:#ffffff;
+    }
+    .info.active{
+        background-color: #141d2f;
+    }
+    .creation{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        /* padding: 0px 14px; */
+
+    }
+    .designRepo{
+        display: flex;
+        flex-direction: column;
+        gap: 13px;
+        background-color: #f6f8ff;
+        padding: 16px;
+        border-radius: 8px;
+        flex-wrap: wrap;
+    }
+    .designRepo.active{
+        background-color: #141d2f;
+        color: white;
+    }
+   
+   
+    .darkact.active{
+        background-color:#1e2a47 ;
+
+    }
+    
+   
+   
+</style>
+</head>
+<body>
+
+    <div data-wrapper class="wrapper h-[100vh] w-[100vw] bg-[#f6f8ff] flex flex-col py-[5rem] items-center font-smono overflow-x-hidden "> 
+        <!-- justify center krne se sara nash hotya  -->
+         <!-- container  -->
+         <div class=" w-[100%] max-w-[800px] flex flex-col gap-4 items-center">
+        <div class="flex  w-[100%] justify-between items-center">
+            <p class="heading  font-bold text-2xl text-[#7b7b7b]">GitHub Finder</p>
+            <div class="darkModes flex justify-between gap-3 items-center ">
+            <p >Dark</p>
+            <img data-darkMode src="../images/moon-icon.svg" class=" h-[1.5rem] mb-[5px] cursor-pointer" alt="">
+            </div>
+
+            <!-- light mode -->
+            <div class="lightModes hidden justify-between gap-3 items-center ">
+                <p >light</p>
+                <img data-LightMode src="../images/sun-icon.svg" class=" h-[1.5rem] mb-[5px] cursor-pointer" alt="">
+                </div>
+    
+         </div>
+
+
+         <!-- search  -->
+         <div class="searchbox flex w-[100%] justify-between bg-white px-3 py-2 rounded-lg shadow-md">
+            <div class="flex items-center gap-3 w-[80%]">
+                <img src="../images/search-icon.svg" class="h-[1.1rem]" alt="">
+                <input data-input type="text" placeholder="Enter a Github username..." class="w-[50%] focus:outline-none bg-inherit">
+                <p data-cross class="cursor-pointer cross">X</p>
+                <!-- cross symbol -->
+            </div>
+            <button data-btn class="px-6 font-bold py-2 text-[#fefefe] bg-[#0079ff] cursor-pointer  hover:bg-[#60abff] rounded-md ">
+                Search
+            </button>
+         </div>
+         <!-- loading  -->
+            <img data-loading src="../images/loading.gif" class="hidden h-[250px] w-[250px]" alt="">
+         <!-- info -->
+         <div data-container class="infoContainer border w-[100%] max-w-[800px] flex gap-4 lg:flex-row flex-col items-center lg:items-start justify-around bg-[white] px-5 py-7 rounded-lg shadow-md" >
+            <!-- profile pic -->
+            <img src="" alt="" data-profilePic class=" h-[100px] w-[100px] rounded-full ">
+            <!-- name and dob -->
+         <div class=" w-[70%] flex flex-col gap-1">
+            <div class="flex justify-between    lg:flex-row flex-col  items-center">
+                <h2 class="font-bold  lg:text-3xl md:text-3xl text-xl " data-name></h2>
+                <p class="text-[#4c5057] dob" data-dob></p>
+            </div>
+            <!-- login name -->
+            <a data-loginName href="" class="text-blue-500 underline lg:self-start self-center"></a>
+            <!-- bio -->
+            <p class="text-[#737476]  mt-1 dob lg:self-start self-center " data-bio></p>
+
+            <!-- info -->
+            <div class="flex info flex-wrap  gap-[5em] bg-[#f6f8ff] px-6 py-3 mt-10 rounded-md">
+                <div >
+                    <p class="text-[#97989a] font-semibold  dob">Repos</p>
+                    <p class="text-2xl font-bold mt-2" data-repos></p>
+                </div>
+                <div>
+                    <p class="text-[#97989a] font-semibold dob">Followers</p>
+                    <p class="text-2xl font-bold mt-2" data-followers></p>
+                </div>
+                <div>
+                    <p class="text-[#97989a] font-semibold dob">Following</p>
+                    <p class="text-2xl font-bold mt-2" data-following></p>
+                </div>
+            </div>
+
+            <!-- loaction and contact -->
+            <button data-getRepositeries class="mt-4 bg-[#0079ff] text-[white] py-2 font-bold rounded-md">
+                See repositeries
+            </button>
+          </div>
+         </div>
+         
+         <!-- see all repositeries -->
+       
+         <div class="bg-[white] darkact hidden px-6 py-6 flex-col rounded-lg gap-5 act  " data-repositeries></div>
+        </div>
+    </div>
+<script src="script.js"></script>
+</body>
+</html>
