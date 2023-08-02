@@ -157,7 +157,7 @@ lightMode.addEventListener("click" , ()=>{
             const semi = document.createElement("div");
             const head = document.createElement("a");
             const image = document.createElement("img");
-            image.src = "../images/website-icon.svg";
+            image.src = "images/website-icon.svg";
             image.classList.add("h-[17px]")
             head.classList.add("font-bold" , "text-xl" , "text-[#0079ff]" , "cursor-pointer");
             head.innerText = eleName;
