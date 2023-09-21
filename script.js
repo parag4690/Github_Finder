@@ -23,6 +23,7 @@ let dob = document.querySelectorAll(".dob");
 const info =document.querySelector(".info");
 const getRepos = document.querySelector("[data-getRepositeries]");
 const repositeries = document.querySelector("[data-repositeries]");
+const dataNot = document.querySelector("[data-not-found]");
 // render the data 
 
 document.querySelector(".cross").style.display="none";
@@ -41,11 +42,14 @@ async function renderingData() {
         loading.style.display = "inline-block";
         dataContainer.style.display="none";
         const response = await fetch(`https://api.github.com/users/${user}`);
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
         const data = await response.json();
         loading.style.display="none";
+        if (!response.ok) {
+            // loading.src = 
+            dataNot.style.display="inline-block";
+            throw new Error('Network response was not ok');
+        }
+        dataNot.style.display="none";
         dataContainer.style.display="flex";
 
         // Use the data as needed
@@ -70,6 +74,7 @@ async function renderingData() {
 }
 
 searchBtn.addEventListener("click" , ()=>{
+
     renderingData();
 });
 cross.addEventListener("click" , ()=>{
@@ -234,6 +239,7 @@ async function MoreRepo(){
     try{
         const fetchRepos = await fetch(`https://api.github.com/users/${user}/repos`);
         const repoData = fetchRepos.json(); // it returns promise so we have to use then to acces the objects
+    
         repositeries.innerHTML="";
         repoData.then((results)=>{
             let length = parseInt(results.length-1);
